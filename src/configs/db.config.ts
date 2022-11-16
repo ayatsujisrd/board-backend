@@ -1,0 +1,1 @@
+export const uri = "mogodb://localhost:27017"
