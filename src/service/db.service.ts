@@ -1,4 +1,4 @@
-import {MongoClient,Collection, Db} from 'mongodb'
+import {MongoClient} from 'mongodb'
 import { uri } from '../configs/db.config'
 
 const DBService = (db:string, collection: string) => {
