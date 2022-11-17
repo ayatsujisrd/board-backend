@@ -11,7 +11,7 @@ async function messageList(req: Request, res: Response) {
   const limit = pageSize
   try {
     const result = messages.find().sort({createTime: -1}).skip(skip).limit(limit)
-    const rows = await result.toArray()
+    const rows = await (await result.toArray()).map((r) => ({...r,id: r._id.toString()}))
     res.json(dataWrapper(rows))
   }catch(e) {
     res.json(dataWrapper(undefined, 500, 'error'))

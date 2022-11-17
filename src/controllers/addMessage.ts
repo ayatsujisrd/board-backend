@@ -4,13 +4,13 @@ import DBService from "../service/db.service";
 import { dataWrapper, getCurrent } from "../utils";
 
 async function addMessage(req:Request, res: Response) {
-  const {message, name} = req.body
+  const {content, user} = req.body
   const [messages, client] = DBService(dbName, 'messages')
   const createTime = getCurrent()
   try {
     const result = await messages.insertOne({
-      name,
-      message,
+      user,
+      content,
       createTime,
       replies: []
     })
