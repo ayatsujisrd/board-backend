@@ -8,8 +8,8 @@ export default async function deleteReply(req: Request, res: Response) {
   const { id, replyId } = req.body
   const [messages, client] = DBService(dbName, 'messages')
   try {
-    const result = await messages.updateOne({_id: new ObjectID(id)}, {$pull: {replies: new ObjectID(replyId)}})
-    if (result) {
+    const result = await messages.updateOne({ _id: new ObjectID(id) }, { $pull: { replies: { _id: new ObjectID(replyId) } } })
+    if (result && result.modifiedCount) {
       res.json(dataWrapper({ code: 1, msg: 'success' }))
     } else {
       res.json(dataWrapper({ code: 0, msg: 'failed' }))
