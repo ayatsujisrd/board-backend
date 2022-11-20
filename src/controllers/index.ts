@@ -5,6 +5,8 @@ import reset from "./reset";
 import addMessage from "./addMessage";
 import messageList from "./messageList";
 import addReply from "./addReply";
+import deleteMessage from "./deleteMessage";
+import deleteReply from "./deleteReply";
 
 export {
     signin,
@@ -13,6 +15,7 @@ export {
     reset,
     addMessage,
     messageList,
-    addReply
-    
+    addReply,
+    deleteMessage,
+    deleteReply
 }

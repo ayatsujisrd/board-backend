@@ -4,7 +4,7 @@ import DBService from "../service/db.service";
 import { dataWrapper, getCurrent } from "../utils";
 
 async function addMessage(req:Request, res: Response) {
-  const {content, user} = req.body
+  const {content, user, category} = req.body
   const [messages, client] = DBService(dbName, 'messages')
   const createTime = getCurrent()
   try {
@@ -12,6 +12,7 @@ async function addMessage(req:Request, res: Response) {
       user,
       content,
       createTime,
+      category,
       replies: []
     })
     if(result) {
