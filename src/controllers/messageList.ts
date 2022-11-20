@@ -15,9 +15,10 @@ async function messageList(req: Request, res: Response) {
     Object.assign(query, { content: { $regex: new RegExp(search as string, 'i') } })
   }
   try {
+    const total = await messages.countDocuments({})
     const result = messages.find(query).sort({ createTime: -1 }).skip(skip).limit(limit)
     const rows = await (await result.toArray()).map((r) => ({ ...r, id: r._id.toString() }))
-    res.json(dataWrapper(rows))
+    res.json(dataWrapper({ pageSize: Number(pageSize), pageNo: Number(pageNo), data: rows, total }))
   } catch (e) {
     console.log(e)
     res.json(dataWrapper(undefined, 500, 'error'))
