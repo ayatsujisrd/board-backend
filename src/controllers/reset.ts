@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { Request, Response } from "express";
 import { dbName } from "../configs/db.config";
 import DBService from "../service/db.service";
@@ -5,12 +6,21 @@ import { dataWrapper } from "../utils";
 
 
 async function reset(req: Request, res: Response) {
-  const { name, password } = req.body
-  const [users, client] = DBService(dbName, 'users')
+  const { email, password, token } = req.body
+  const [users, client, db] = DBService(dbName, 'users')
+  const tokens = db.collection('tokens')
 
   try {
+    const tokenResult = await tokens.findOne({token})
+    if(!tokenResult) {
+      res.json(dataWrapper({code: 0, msg: 'wrong token'}))
+    }
+    const createTime = tokenResult!.createTime
+    if(dayjs().subtract(1, 'hours').isBefore(dayjs(createTime))) {
+      res.json(dataWrapper({code: 0, msg: 'token expired'}))
+    }
     const result = await users.updateOne({
-      name
+      email
     }, { $set: { password } })
 
     if (result) {

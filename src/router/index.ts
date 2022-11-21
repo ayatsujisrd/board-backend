@@ -11,5 +11,6 @@ router.put('/addReply', controllers.addReply)
 router.patch('/reset', controllers.reset)
 router.delete('/deleteMessage', controllers.deleteMessage)
 router.delete('/deleteReply', controllers.deleteReply)
+router.post('/forget', controllers.forget)
 
 export default router
