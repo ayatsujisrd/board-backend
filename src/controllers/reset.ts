@@ -11,13 +11,14 @@ async function reset(req: Request, res: Response) {
   const tokens = db.collection('tokens')
 
   try {
-    const tokenResult = await tokens.findOne({token})
-    if(!tokenResult) {
-      res.json(dataWrapper({code: 0, msg: 'wrong token'}))
+    const tokenResult = await tokens.findOne({ token })
+    if (!tokenResult) {
+      res.json(dataWrapper({ code: 0, msg: 'wrong token' }))
     }
     const createTime = tokenResult!.createTime
-    if(dayjs().subtract(1, 'hours').isBefore(dayjs(createTime))) {
-      res.json(dataWrapper({code: 0, msg: 'token expired'}))
+    if (!dayjs().subtract(1, 'hours').isBefore(dayjs(createTime))) {
+      res.json(dataWrapper({ code: 0, msg: 'token expired' }))
+      return
     }
     const result = await users.updateOne({
       email
