@@ -15,7 +15,7 @@ async function init() {
   // create users collection
   const initUsers = async (users?: Collection) => {
     if (users) {
-      users.createIndex({ name: 1, email: 1 }, { unique: true })
+      await users.createIndex({ name: 1, email: 1 }, { unique: true })
       console.log('init index')
       close()
       return
