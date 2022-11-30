@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { auth, getAccessToken } from "../service/auth.service";
 import { dataWrapper } from "../utils";
 
-export async function signin(req: Request, res: Response) {
+export default async function signin(req: Request, res: Response) {
   try {
 
     const { name, password } = req.body

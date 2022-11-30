@@ -10,7 +10,7 @@ dotenv.config()
 const realm = process.env.REALM || 'board'
 const baseURL = process.env.AUTH_URL
 
-export function signup(req: Request, res: Response) {
+export default function signup(req: Request, res: Response) {
   try {
     const { name, password, email } = req.body
     adminAuth().then((token) => {
