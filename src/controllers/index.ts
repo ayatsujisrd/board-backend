@@ -7,10 +7,14 @@ import messageList from "./messageList";
 import addReply from "./addReply";
 import deleteMessage from "./deleteMessage";
 import deleteReply from "./deleteReply";
+import { signin as signinAuth } from "./sigin_auth";
+import { signup as signupAuth } from "./signup_auth";
 
 export {
     signin,
+    signinAuth,
     signup,
+    signupAuth,
     forget,
     reset,
     addMessage,
