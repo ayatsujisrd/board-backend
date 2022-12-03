@@ -12,7 +12,7 @@ export default async function signin(req: Request, res: Response) {
 
         res.json(dataWrapper({ code: 1, msg: 'success', accessToken }))
       }else {
-        res.json(dataWrapper({ code: 0, msg: 'failed', accessToken }))
+        res.json(dataWrapper({ code: 0, msg: 'user or password wrong', accessToken }))
       }
     }).catch((e) => res.json(dataWrapper({ code: 0, msg: e?.message })))
   } catch (e) {
