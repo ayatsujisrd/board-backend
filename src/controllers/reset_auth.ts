@@ -14,7 +14,7 @@ const realm = process.env.REALM
 
 async function reset(req: Request, res: Response) {
   const { email, password, token } = req.body
-  const url = `${baseURL}/admin/realms/board/users`
+  const url = `${baseURL}/admin/realms/${realm}/users`
   const [tokens, client] = DBService(dbName, 'tokens')
 
   try {
